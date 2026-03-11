@@ -117,10 +117,10 @@ export const getUserBookings = async (req, res) => {
 
 export const getHotelBookings = async (req, res) => {
   try {
-     const hotel = await Hotel.findOne({ owner: req.auth.userId});
-    if (!hotel) (
-       res.json({ success: false, message: "No Hotel Found" })
-    )
+     const hotel = await Hotel.findOne({ owner: req.user._id});
+    if (!hotel) {
+       return res.json({ success: false, message: "No Hotel Found" })
+    }
     const bookings = await Booking.find({ hotel: hotel._id })
       .populate("room hotel user")
       .sort({ createdAt: -1 });
