@@ -20,7 +20,7 @@ const Sidebar = () => {
                 <p className='md:block hidden text-center'>{item.name}</p>
         </NavLink>
       ))}
-    </div>
+    </div> 
   )
 }
 

@@ -13,7 +13,7 @@ const ExclusiveOffers = () => {
             <img src={assets.arrowIcon} alt="arrow-icon" 
             className='group-hover:translate-x-1 transition-all'/>
         </button>
-      </div>
+      </div> 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12'>
             {exclusiveOffers.map((item) => (
                 <div key={item._id} className='group relative flex flex-col items-start
