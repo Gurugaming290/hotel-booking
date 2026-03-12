@@ -12,7 +12,7 @@ export const stripeWebhooks = async (request, response) => {
     try {
         event = stripeInstance.webhooks.constructEvent(request.body, sig, process.env.STRIPE_WEBHOOK_SECRET)
     } catch (err) {
-        response.status(400).send(`Webhook Error: ${err.message}`)
+        return response.status(400).send(`Webhook Error: ${err.message}`)
     }
 
     // Handle the event
@@ -29,7 +29,7 @@ export const stripeWebhooks = async (request, response) => {
         // Mark Payment as Paid
         await Booking.findByIdAndUpdate(bookingId, {isPaid: true, paymentMethod: "Stripe"})
     }else{
-        console.log("Unhandled event type :", event.type)
+        return console.log("Unhandled event type :", event.type)
     }
     response.json({ received: true});
 }
